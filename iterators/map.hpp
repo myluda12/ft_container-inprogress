@@ -101,25 +101,21 @@ namespace ft
         // iterators;
         iterator begin() 
         {   
-            iterator tmp(root);
-            return tmp;
+            node_type *tmp = tree.findmin(root);
+            return iterator(tmp, root);
         }
         const_iterator begin() const
         {
-            const_iterator tmp(root);
-            return tmp;
+            node_type *tmp = tree.findmin(root);
+            return const_iterator(tmp, root);
         }
         iterator end() 
         {
-            iterator tmp(NULL);
-            return tmp;
+            return iterator(NULL, root);
         }
         const_iterator end() const
         {
-            const_iterator tmp(root);
-            while (tmp.node->right)
-                tmp++;
-            return tmp;
+            return const_iterator(NULL, root);
         }
         reverse_iterator rbegin() 
         {
