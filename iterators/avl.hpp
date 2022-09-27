@@ -102,8 +102,7 @@ class avl {
                 val = root->left->height + 1;
     
             if (root->right != NULL)
-                val = max(
-                    val, root->right->height + 1);
+                val = max(val, root->right->height + 1);
     
             // Update the height of the
             // current node
