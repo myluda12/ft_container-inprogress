@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "utils.hpp"
 namespace ft {
 
 
@@ -10,7 +10,7 @@ struct node {
     node* left;
     node* right;
     // int key;
-    std::pair<Key, T> *pair;
+    ft::pair<Key, T> *pair;
     node* par;
     int height;
 };
@@ -29,12 +29,12 @@ const T& max(const T& a, const T& b)
 // }
  
 
-template <class Key , class T, class compare = std::less<Key>, class allocator = std::allocator<Key> >
+template <class Key, class T, class compare, class allocator>
 class avl {
 
-    typedef node<Key, T> node;
-    typedef std::pair<Key, T> pair;
-    typedef typename allocator::template rebind<node>::other rebind_allocator;
+    typedef node<Key, T> node_type;
+    typedef ft::pair<Key, T> pair;
+    typedef typename allocator::template rebind<node_type>::other rebind_allocator;
     typedef typename allocator::template rebind<pair>::other _allocator;
     rebind_allocator _NodeAll;
     _allocator _PairAll;
@@ -49,7 +49,7 @@ class avl {
     }
 
 
-    node *find(node *node, Key key)const
+    node_type *find(node_type *node, Key key)const
      {
         if (node == nullptr)
             return nullptr;
@@ -61,7 +61,7 @@ class avl {
             return (find(node->right, key));
         return node; 
     }
-    void printpreorder(node* root)
+    void printpreorder(node_type* root)
     {
         // Print the node's value along
         // with its parent value
@@ -88,7 +88,7 @@ class avl {
     // a node according to its children's
     // node's heights
     void Updateheight(
-        node* root)
+        node_type* root)
     {
         if (root != NULL) {
     
@@ -111,12 +111,12 @@ class avl {
     }
     
     // Function to handle Left Left Case
-    node* LLR(
-        node* root)
+    node_type* LLR(
+        node_type* root)
     {
         // Create a reference to the
         // left child
-        node* tmpnode = root->left;
+        node_type* tmpnode = root->left;
     
         // Update the left child of the
         // root to the right child of the
@@ -164,12 +164,12 @@ class avl {
     }
     
     // Function to handle Right Right Case
-    node* RRR(
-        node* root)
+    node_type* RRR(
+        node_type* root)
     {
         // Create a reference to the
         // right child
-        node* tmpnode = root->right;
+        node_type* tmpnode = root->right;
     
         // Update the right child of the
         // root as the left child of the
@@ -217,16 +217,16 @@ class avl {
     }
     
     // Function to handle Left Right Case
-    node* LRR(
-        node* root)
+    node_type* LRR(
+        node_type* root)
     {
         root->left = RRR(root->left);
         return LLR(root);
     }
     
     // Function to handle right left case
-    node* RLR(
-        node* root)
+    node_type* RLR(
+        node_type* root)
     {
         root->right = LLR(root->right);
         return RRR(root);
@@ -234,8 +234,8 @@ class avl {
     
     // Function to balance the tree after
     // deletion of a node
-    node* Balance(
-        node* root)
+    node_type* Balance(
+        node_type* root)
     {
         // Store the current height of
         // the left and right subtree
@@ -306,7 +306,7 @@ class avl {
         return root;
     }
     
-    node *findmin(node *root)
+    node_type *findmin(node_type *root)
     {
         if (root == NULL)
             return NULL;
@@ -314,7 +314,7 @@ class avl {
             root = root->left;
         return root;
     }
-    node *findmax(node *root)
+    node_type *findmax(node_type *root)
     {
         if (root == NULL)
             return NULL;
@@ -322,7 +322,7 @@ class avl {
             root = root->right;
         return root;
     }
-    node* Insert(node* root, node* parent, pair *_pair)
+    node_type* Insert(node_type* root, node_type* parent, pair _pair)
     {
     
         if (root == NULL) {
@@ -333,15 +333,16 @@ class avl {
             if (root == NULL)
                 std::cout << "Error in memory" << std::endl;
             else {
+                root = _NodeAll.allocate(1);
+                root->pair = _PairAll.allocate(1);
                 root->height = 1;
                 root->left = NULL;
                 root->right = NULL;
                 root->par = parent;
-                root->pair = _pair;
             }
         }
     
-        else if (!_comp(root->pair->first, _pair->first)) {
+        else if (!_comp(root->pair->first, _pair.first)) {
     
             // Recur to the left subtree
             // to insert the node
@@ -366,7 +367,7 @@ class avl {
                 == 2) {
     
                 if (root->left != NULL
-                    && _comp(_pair->first, root->left->pair->first)) {
+                    && _comp(_pair.first, root->left->pair->first)) {
     
                     // Left Left Case
                     root = LLR(root);
@@ -379,7 +380,7 @@ class avl {
             }
         }
     
-        else if (_comp(root->pair->first, _pair->first)) {
+        else if (_comp(root->pair->first, _pair.first)) {
     
             // Recur to the right subtree
             // to insert the node
@@ -401,7 +402,7 @@ class avl {
             // current node is not balanced
             if (abs(firstheight - secondheight) == 2) {
                 if (root->right != NULL
-                    && _comp(_pair->first, root->right->pair->first)) {
+                    && _comp(_pair.first, root->right->pair->first)) {
     
                     // Right Left Case
                     root = RLR(root);
@@ -429,12 +430,12 @@ class avl {
     
     // Function to delete a node from
     // the AVL tree
-    node* Delete(node* root,pair *_pair)
+    node_type* Delete(node_type* root,pair _pair)
     {
         if (root != NULL) {
     
             // If the node is found
-                if (root->pair->first == _pair->first) {
+                if (root->pair->first == _pair.first) {
     
                 // Replace root with its
                 // left child
@@ -509,7 +510,7 @@ class avl {
                 // successor and then
                 // recursively call Delete()
                 else {
-                    node* tmpnode = root;
+                    node_type* tmpnode = root;
                     tmpnode = tmpnode->right;
                     while (tmpnode->left != NULL) {
                         tmpnode = tmpnode->left;
@@ -518,8 +519,7 @@ class avl {
                     pair *val =  tmpnode->pair;
                     // tmpnode->pair;
     
-                    root->right
-                        = Delete(root->right, tmpnode->pair);
+                    root->right = Delete(root->right, *tmpnode->pair);
     
                     root->pair = val;
     
@@ -531,7 +531,7 @@ class avl {
     
             // Recur to the right subtree to
             // delete the current node
-            else if (_comp(root->pair->first, _pair->first)) {
+            else if (_comp(root->pair->first, _pair.first)) {
                 root->right = Delete(root->right, _pair);
     
                 root = Balance(root);
@@ -539,7 +539,7 @@ class avl {
     
             // Recur into the right subtree
             // to delete the current node
-            else if (!_comp(root->pair->first, _pair->first)) {
+            else if (!_comp(root->pair->first, _pair.first)) {
                 root->left = Delete(root->left, _pair);
     
                 root = Balance(root);
@@ -562,9 +562,9 @@ class avl {
         return root;
     }
 
-     node *lowerBound(node *root, const Key &k) const
+     node_type *lowerBound(node_type *root, const Key &k) const
             {
-                node *r = NULL;
+                node_type *r = NULL;
                 while(root != nullptr)
                 {
                     if (!_comp(root->pair->first, k))
@@ -577,13 +577,13 @@ class avl {
                 }
                 return r;
             }
-    node *treeSuccesor(node *x)const
+    node_type *treeSuccesor(node_type *x)const
         {
             if (x == NULL)
                 return x;
             if (x->right != NULL)
                 return treemin(x->right);
-            node *y = x->par;
+            node_type *y = x->par;
             while(y!= NULL && (x == y->right ))
             {
                  x = y;
@@ -591,13 +591,13 @@ class avl {
             }
                 return y;
         }
-            node *treepredecessor(node *x)const
+            node_type *treepredecessor(node_type *x)const
             {
                 if (x == NULL)
                     return x;
                 if (x->left != NULL)
                     return findmax(x->left);
-                node *y = x->par;
+                node_type *y = x->par;
                 while(y!= NULL && (x == y->left))
                 {
                     x =y;
@@ -605,9 +605,9 @@ class avl {
                 }
                 return y;
             }
-            node *upperbound(node *root, const Key &k)const
+            node_type *upperbound(node_type *root, const Key &k)const
             {
-                node *r = NULL;
+                node_type *r = NULL;
                 while(root != nullptr)
                 {
                     if (_comp(k,root->pair->first))

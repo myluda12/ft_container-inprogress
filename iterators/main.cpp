@@ -25,38 +25,54 @@
 //     time_t msecs_time = (time_now.tv_sec * 1e3) + (time_now.tv_usec / 1e3);
 //     return (msecs_time);
 // }
+# include "map.hpp"
+# include "utils.hpp"
+#include <map>
 
-# include "avl.hpp"
 int main()
 {
-    ft::node<int, int>* root;
-    std::pair<int, int> p2(2, 2);
-    std::pair<int, int> p3(3, 3);
-    std::pair<int, int> p1(1, 1);
-    std::pair<int, int> p4(4, 4);
-    std::pair<int, int> p5(5, 5);
-    std::pair<int, int> p6(10, 10);
-    root = NULL;
-    ft::avl<int, int> a;
-    // Function call to insert the nodes
-    root = a.Insert(root, NULL, &p1);
-    root = a.Insert(root, NULL, &p2);
-    root = a.Insert(root, NULL, &p3); 
-    root = a.Insert(root, NULL, &p4);
-    root = a.Insert(root, NULL, &p5);
-    root = a.Insert(root, NULL, &p6);
+    // ft::node<int, int>* root;
+    // std::pair<int, int> p2(2, 2);
+    // std::pair<int, int> p3(3, 3);
+    // std::pair<int, int> p1(1, 1);
+    // std::pair<int, int> p4(4, 4);
+    // std::pair<int, int> p5(5, 5);
+    // std::pair<int, int> p6(10, 10);
+    // root = NULL;
+    // ft::avl<int, int> a;
+    // // Function call to insert the nodes
+    // root = a.Insert(root, NULL, &p1);
+    // root = a.Insert(root, NULL, &p2);
+    // root = a.Insert(root, NULL, &p3); 
+    // root = a.Insert(root, NULL, &p4);
+    // root = a.Insert(root, NULL, &p5);
+    // root = a.Insert(root, NULL, &p6);
 
  
-    // Print the tree before deleting node
-    std::cout << "Before deletion:\n";
-    a.printpreorder(root);
+    // // Print the tree before deleting node
+    // std::cout << "Before deletion:\n";
+    // a.printpreorder(root);
  
-    // Function Call to delete node 10
-    root = a.Delete(root, &p6);
+    // // Function Call to delete node 10
+    // root = a.Delete(root, &p6);
  
-    // Print the tree after deleting node
-    std::cout << "After deletion:\n";
-    a.printpreorder(root);
+    // // Print the tree after deleting node
+    // std::cout << "After deletion:\n";
+    // a.printpreorder(root);
+      ft::Map<int, char> my_m;
+        for (int i = 0; i < 1e2; i++)
+            my_m.insert(ft::make_pair(i, 'A'));
+
+        //ft::Map<int, char>::reverse_iterator my_rit2(my_m.end());
+        //ft::Map<int, char>::const_reverse_iterator c_it, c_ob(my_m.end());
+        ft::Map<int, char>::reverse_iterator my_rit2(my_m.end());
+        ft::Map<int, char>::const_reverse_iterator c_it, c_ob(my_m.end());
+      
+        c_it = my_rit2;
+        if (my_rit2->first)
+            std::cout << "OK" << std::endl;
+        else
+            std::cout << "KO" << std::endl;
 }
 
 // int main () {

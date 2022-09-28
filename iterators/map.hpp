@@ -1,4 +1,5 @@
 #pragma once
+
 #include "avl.hpp"
 #include <utility>
 #include "reverse_iterator.hpp"
@@ -19,15 +20,21 @@ namespace ft
         typedef typename Allocator::reference reference;
         typedef typename Allocator::const_reference const_reference;
         typedef ptrdiff_t difference_type;
-        typedef ft::node<value_type,allocator_type> node_type;
-        typedef typename ft::Bidirectional_iterator<value_type, node_type*> iterator;
-        typedef typename ft::Bidirectional_iterator<const value_type, node_type*> const_iterator;
+        typedef ft::node<const Key, T> node_type;
+        typedef typename ft::Bidirectional_iterator<const Key, T> iterator;
+        typedef typename ft::Bidirectional_iterator<const Key, T> const_iterator;
         typedef size_t size_type;
+       
+       
         typedef typename Allocator::pointer pointer;
         typedef typename Allocator::const_pointer const_pointer;
+      
+      
         typedef ft::reverse_iterator<iterator> reverse_iterator;
         typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
-        typedef typename ft::avl<value_type, key_compare, allocator_type> tree_type;
+       
+       
+        typedef typename ft::avl<const Key, T, Compare, Allocator > tree_type;
 
         size_type size_;
         node_type *root;
@@ -47,7 +54,7 @@ namespace ft
                 return comp(x.first, y.first);
             }
         };
-        // 23.3.1.1 construct/copy/destroy:
+        // 23.3.1.1 construct/copy/destroyƒ:
         explicit Map(const Compare &comp = Compare(), const Allocator &alloca = Allocator())
         {
             size_ = 0;
@@ -88,11 +95,11 @@ namespace ft
         {
             if (this == &x)
                 return *this;
-            tree.Deleteall(root);
+            //tree.Deleteall(root); REMINDEEER YOULL BACK AGAIN
             size_ = 0;
             for (const_iterator it = x.begin(); it != x.end(); it++)
             {
-                root = tree.insert(root, NULL, *it);
+                root = tree.Insert(root, NULL, *it);
                 size_++;
             }
             return *this;
@@ -101,12 +108,12 @@ namespace ft
         // iterators;
         iterator begin() 
         {   
-            node_type *tmp = tree.findmin(root);
+            node_type *tmp = findmin(root);
             return iterator(tmp, root);
         }
         const_iterator begin() const
         {
-            node_type *tmp = tree.findmin(root);
+            node_type *tmp = findmin(root);
             return const_iterator(tmp, root);
         }
         iterator end() 
@@ -169,22 +176,22 @@ namespace ft
         }
 
         // modifiers:
-        ft::pair<iterator, bool> insert(const value_type &k)
+        pair<iterator, bool> insert(const value_type &k)
         {
             iterator it = find(k.first);
             if(it!= end())
-                return ft::pair<iterator,bool>(it, false);
-            root = tree.insert(root, NULL, k);
-             size_++;
-             return ft::pair<iterator,bool>(begin(), true);
-        }
+            return pair<iterator,bool>(it, false);
+               root = tree.Insert(root, NULL, k);
+               size_++;
+               return pair<iterator,bool>(begin(), true);
+         }
 
         iterator insert(iterator position, const value_type &k)
             {
                 iterator it = find(k.first);
                 if (it != end())
                     return position;
-                root = tree.insert(root, NULL, k);
+                root = tree.Insert(root, NULL, k);
                 size_++;
                 return begin();
             }
@@ -194,13 +201,13 @@ namespace ft
         {
             for (InputIterator it = first; it != last; it++)
             {
-                root = tree.insert(root, NULL, *it);
+                root = tree.Insert(root, NULL, *it);
                 size_++;
             }
         }
         void erase(iterator position)
         {
-            root = tree.Delete(root, position.node);
+            root = tree.Delete(root, *position);
             size_--;
         }
         size_t erase(const key_type &k)
@@ -208,7 +215,7 @@ namespace ft
             iterator it = find(k);
             if (it == end())
                 return 0;
-            root = tree.Delete(root, it.node);
+            root = tree.Delete(root, *it);
             size_--;
             return 1;
         }
@@ -216,10 +223,11 @@ namespace ft
         {
             for (iterator it = first; it != last; it++)
             {
-                root = tree.Delete(root, it.node);
+                root = tree.Delete(root, *it);
                 size_--;
             }
         }
+
 
         // void erase(iterator position)
         // {
@@ -269,7 +277,12 @@ namespace ft
             return end();
         }
 
-        size_type count(const key_type& x) const;
+        size_type count(const key_type& x) const
+        {
+            if (find(x) != end())
+                return 1;
+            return 0;
+        }
 
         iterator lower_bound(const key_type& x)
         {
@@ -281,11 +294,11 @@ namespace ft
         }
         iterator upper_bound(const key_type& x)
         {
-            return iterator(root,tree.upperBound(root,x));
+            return iterator(root,tree.upperbound(root,x));
         }
         const_iterator upper_bound(const key_type& x) const
         {
-            return const_iterator(root,tree.upperBound(root,x));
+            return const_iterator(root, tree.upperbound(root,x));
         }
 
         allocator_type get_allocator() const
@@ -293,26 +306,42 @@ namespace ft
             return alloc;
         };
 
-        private:
+        public:
             key_compare		compare;
             allocator_type	alloc;
             tree_type		tree;
-        // node_type *findmin(node_type *root)
-        //     {
-        //         if (root == NULL)
-        //             return NULL;
-        //         if (root->left != NULL)
-        //             root = root->left;
-        //         return root;
-        //     }
-        //     node_type *findmax(node_type *root)
-        //     {
-        //         if (root == NULL)
-        //             return NULL;
-        //         if (root->right != NULL)
-        //             root = root->right;
-        //         return root;
-        //     }
+        node_type *findmin(node_type *root)
+            {
+                if (root == NULL)
+                    return NULL;
+                if (root->left != NULL)
+                    root = root->left;
+                return root;
+            }
+            node_type *findmax(node_type *root)
+            {
+                if (root == NULL)
+                    return NULL;
+                if (root->right != NULL)
+                    root = root->right;
+                return root;
+            }
+            node_type *findmin(node_type *root) const
+            {
+                if (root == NULL)
+                    return NULL;
+                if (root->left != NULL)
+                    root = root->left;
+                return root;
+            }
+            node_type *findmax(node_type *root) const
+            {
+                if (root == NULL)
+                    return NULL;
+                if (root->right != NULL)
+                    root = root->right;
+                return root;
+            }
     };
 
 
@@ -358,8 +387,8 @@ namespace ft
         // std::swap(x._allocator, y._allocator);
         // std::swap(x._cmp, y._cmp);
         std::swap(x.root, y.root);
-        std::swap(x._size, y._size);
-        std::swap(x._allocator, y._allocator);
-        std::swap(x._cmp, y._cmp);
+        std::swap(x.size_, y.size_);
+        std::swap(x.alloc, y.alloc);
+        std::swap(x.compare, y.compare);
     }
 };

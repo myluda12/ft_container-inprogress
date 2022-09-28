@@ -16,7 +16,7 @@ namespace ft
             typedef typename iterator_traits<Iterator>::iterator_category  iterator_category;
 
             // Constructors
-            reverse_iterator() : _pointer(nullptr) {};
+            reverse_iterator() {};
             explicit reverse_iterator (iterator_type it) : _pointer(--it) {};
             template <typename Iter>
             reverse_iterator (const reverse_iterator<Iter>& rev_it) 
@@ -34,11 +34,11 @@ namespace ft
                 return reverse_iterator<const iterator_type>(this->_pointer);
             } 
 
-            reference operator*() const
-            {
-                Iterator tmp (_pointer);
-                return *tmp; 
-            }
+            // reference operator*() const
+            // {
+            //     Iterator tmp (_pointer);
+            //     return *tmp; 
+            // }
 
             reverse_iterator operator+ (difference_type n) const
             {
@@ -47,10 +47,26 @@ namespace ft
 
                 return tmp;
             }
-            pointer operator->()const
+            // pointer operator->()const
+            // {
+            //     return &(operator*());
+            // }
+            
+            
+            reference operator*() const
             {
-                return &(operator*());
-            }
+                iterator_type tmp = _pointer;
+                return *--tmp;
+            };
+            
+            
+            pointer operator->() const
+            {
+                iterator_type tmp(_pointer);
+                --tmp;
+                return tmp.operator->(); 
+            };
+            
             reverse_iterator& operator++()
             {
                 --_pointer;
@@ -90,7 +106,7 @@ namespace ft
                 return *this;
             }
             	reference	operator[](difference_type n) const{return _pointer[-n];};
-            private :
+            protected :
                 iterator_type _pointer;
           
 

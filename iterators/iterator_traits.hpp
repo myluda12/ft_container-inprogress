@@ -14,7 +14,7 @@ namespace ft
 	};
 
     // For general iterator
-    template <typename Iterator>
+    template <class Iterator>
     class iterator_traits
     {
         public:
