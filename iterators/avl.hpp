@@ -10,7 +10,7 @@ struct node {
     node* left;
     node* right;
     // int key;
-    ft::pair<Key, T> *pair;
+    ft::pair<const Key, T> *pair;
     node* par;
     int height;
 };
@@ -29,13 +29,13 @@ const T& max(const T& a, const T& b)
 // }
  
 
-template <class Key, class T, class compare, class allocator>
+template <class Key, class T , class compare = std::less<Key>, class Alloc = std::allocator<Key> >
 class avl {
 
     typedef node<Key, T> node_type;
     typedef ft::pair<Key, T> pair;
-    typedef typename allocator::template rebind<node_type>::other rebind_allocator;
-    typedef typename allocator::template rebind<pair>::other _allocator;
+    typedef typename Alloc::template rebind<node_type>::other rebind_allocator;
+    typedef typename Alloc::template rebind<pair>::other _allocator;
     rebind_allocator _NodeAll;
     _allocator _PairAll;
     compare _comp;
@@ -335,6 +335,7 @@ class avl {
             else {
                 root = _NodeAll.allocate(1);
                 root->pair = _PairAll.allocate(1);
+                _PairAll.construct(root->pair, _pair);
                 root->height = 1;
                 root->left = NULL;
                 root->right = NULL;

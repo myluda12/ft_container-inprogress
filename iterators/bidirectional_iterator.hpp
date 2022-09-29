@@ -150,7 +150,6 @@ namespace ft
                 }
                 else if (node == max_tree(node_root))
                     node = NULL;
-                return *this;
             }
             return *this;
         };
@@ -217,8 +216,8 @@ namespace ft
         };
         pair &operator*() const
         {
-            //return *(node->pair);
-            return *node->pair;
+            return *(node->pair);
+            //return *node->pair;
         };
         pair *operator->() const
         {
