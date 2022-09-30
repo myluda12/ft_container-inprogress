@@ -63,22 +63,30 @@ namespace ft
             alloc = alloca;
 
         }
-
-         template<class InputIterator>
-         Map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(),const allocator_type &alloca = allocator_type()
-         /*,typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type* = 0*/
-         )
-          {
-           size_ = 0;
-           root = NULL;
-           compare = comp;
-           alloc = alloca;
-           for (InputIterator it = first; it != last; it++)
-           {
-               root = tree.Insert(root, root->par, *it);
-               size_++;
-           }
-          }
+        //range contructor of map
+        template <class InputIterator>
+        Map(InputIterator first, InputIterator last, const Compare &comp = Compare(), const Allocator &alloca = allocator_type(),  typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
+        {
+            size_ = 0;
+            root = NULL;
+            compare = comp;
+            alloc = alloca;
+            insert(first, last);
+        }
+        //  template<class InputIterator>
+        //  Map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(),const allocator_type &alloca = allocator_type()
+        //  ,typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type* = 0)
+        //   {
+        //    size_ = 0;
+        //    root = NULL;
+        //    compare = comp;
+        //    alloc = alloca;
+        //    for (InputIterator it = first; it != last; it++)
+        //    {
+        //        root = tree.Insert(root, root->par, *it);
+        //        size_++;
+        //    }
+        //   }
 
 
         Map(const Map<Key, T, Compare, Allocator> &x)
@@ -99,7 +107,7 @@ namespace ft
             size_ = 0;
             for (const_iterator it = x.begin(); it != x.end(); it++)
             {
-                root = tree.Insert(root, NULL, *it);
+                insert(*it);
                 size_++;
             }
             return *this;
@@ -118,11 +126,11 @@ namespace ft
         }
         iterator end() 
         {
-            return iterator(NULL, root);
+            return iterator(NULL,root, findmax(root));
         }
         const_iterator end() const
         {
-            return const_iterator(NULL, root);
+            return const_iterator(NULL, root,findmax(root));
         }
         reverse_iterator rbegin() 
         {
@@ -130,7 +138,7 @@ namespace ft
         }
         const_reverse_iterator rbegin() const
         {
-            return const_reverse_iterator(end());
+            return reverse_iterator(end());
         }
         reverse_iterator rend()
         {
@@ -138,7 +146,7 @@ namespace ft
         }
         const_reverse_iterator rend() const
         {
-            return const_reverse_iterator(begin());
+            return reverse_iterator(begin());
         }
 
         // CAPACITY
@@ -201,8 +209,7 @@ namespace ft
         {
             for (InputIterator it = first; it != last; it++)
             {
-                root = tree.Insert(root, NULL, *it);
-                size_++;
+                insert(*it);
             }
         }
         void erase(iterator position)
@@ -306,15 +313,82 @@ namespace ft
             return alloc;
         };
 
+
+
+
         public:
             key_compare		compare;
             allocator_type	alloc;
             tree_type		tree;
+            struct Trunk
+		{
+			Trunk *prev;
+			std::string str;
+		
+			Trunk(Trunk *prev, std::string str)
+			{
+				this->prev = prev;
+				this->str = str;
+			}
+		};
+
+		// Helper function to print branches of the binary tree
+		void showTrunks(Trunk *p)
+		{
+			if (p == nullptr) {
+				return;
+			}
+		
+			showTrunks(p->prev);
+			std::cout << p->str;
+		}
+
+		// template<class Key, class T>
+		void printTree(node_type* root, Trunk *prev, bool isLeft)
+		{
+			if (root == nullptr) {
+				return;
+			}
+		
+			std::string prev_str = "    ";
+			Trunk *trunk = new Trunk(prev, prev_str);
+		
+			printTree(root->right, trunk, true);
+		
+			if (!prev) {
+				trunk->str = "———";
+			}
+			else if (isLeft)
+			{
+				trunk->str = ".———";
+				prev_str = "   |";
+			}
+			else {
+				trunk->str = "`———";
+				prev->str = prev_str;
+			}
+		
+			showTrunks(trunk);
+			std::cout << " " << root->pair->first << std::endl;
+		
+			if (prev) {
+				prev->str = prev_str;
+			}
+			trunk->str = "   |";
+		
+			printTree(root->left, trunk, false);
+		}
+	
+		node_type * get_root()
+		{
+			return(root);
+		}
+
         node_type *findmin(node_type *root)
             {
                 if (root == NULL)
                     return NULL;
-                if (root->left != NULL)
+                while (root && root->left != NULL)
                     root = root->left;
                 return root;
             }
@@ -322,7 +396,7 @@ namespace ft
             {
                 if (root == NULL)
                     return NULL;
-                if (root->right != NULL)
+                while (root && root->right != NULL)
                     root = root->right;
                 return root;
             }
@@ -330,7 +404,7 @@ namespace ft
             {
                 if (root == NULL)
                     return NULL;
-                if (root->left != NULL)
+                while (root && root->left != NULL)
                     root = root->left;
                 return root;
             }
@@ -338,7 +412,7 @@ namespace ft
             {
                 if (root == NULL)
                     return NULL;
-                if (root->right != NULL)
+                while (root && root->right != NULL)
                     root = root->right;
                 return root;
             }

@@ -30,6 +30,50 @@ namespace ft
     private:
         node_type *node;
         node_type *node_root;
+        node_type *end;
+           node_type* minValueNode(node_type* node)
+                {
+                    node_type* current = node;
+                
+                    /* loop down to find the rightmost leaf */
+                    while (current && current->left != NULL)
+                        current = current->left;
+                
+                    return current;
+                }
+				
+                node_type* maxValueNode(node_type* node)
+                {
+                    node_type* current = node;
+                
+                    /* loop down to find the leftmost leaf */
+                    while (current && current->right != NULL)
+                        current = current->right;
+                
+                    return current;
+                }
+				
+                node_type* minValueNode(node_type* node) const
+                {
+                    node_type* current = node;
+                
+                    /* loop down to find the rightmost leaf */
+                    while (current && current->left != NULL)
+                        current = current->left;
+                
+                    return current;
+                }
+				
+                node_type* maxValueNode(node_type* node) const
+                {
+                    node_type* current = node;
+                
+                    /* loop down to find the leftmost leaf */
+                    while (current && current->right != NULL)
+                        current = current->right;
+                
+                    return current;
+                }   
     public:
 
         node_type* get_node() const
@@ -40,26 +84,39 @@ namespace ft
         {
             return node_root;
         };
+        node_type* get_end() const
+        {
+            return end;
+        };
 
         template <typename U, typename V>
         Bidirectional_iterator(const Bidirectional_iterator<U, V> &other)
         {
             this->_node = other.get_node();
             this->_root = other.get_root();
+            this->_end = other.get_end();
         };
 
-        Bidirectional_iterator() : node(NULL), node_root(NULL){};
+        Bidirectional_iterator() : node(NULL), node_root(NULL),end(NULL){};
         
         Bidirectional_iterator(node_type *_node,node_type *_root)
         {
             node = _node;
             node_root = _root;
+            end = NULL;
         };
+        Bidirectional_iterator(node_type *_node,node_type *_root,node_type* end)
+        {
+            node = _node;
+            node_root = _root;
+            this->end = end;
+        }
         
         Bidirectional_iterator(Bidirectional_iterator const &other)
         {
             node = other.get_node();
             node_root = other.get_root();
+            end = other.get_end();
         };
 
         // Bidirectional_iterator(node_type *node_root, node_type *node)
@@ -94,6 +151,7 @@ namespace ft
         {
             this->node = other.get_node();
             this->node_root = other.get_root();
+            this->end = other.get_end();
             return *this;
         };
 
@@ -122,70 +180,118 @@ namespace ft
         }
         Bidirectional_iterator &operator++()
         {
-            if (node == NULL)
-            {
-                node = node_root;
-                while (node != NULL && node->left != NULL)
-                    node = node->left;
-            }
-            if (node->right)
-            {
-                node = node->right;
-                while (node->left != NULL)
-                    node = node->left;
-            }
-            else if (node->par)
-            {
-                node_type *daddy_chill = node->par;
-                if (daddy_chill == node)
-                    node = daddy_chill;
-                else if (daddy_chill->right == node)
-                {
-                    while (daddy_chill && daddy_chill->right == node)
-                    {
-                        node = daddy_chill;
-                        daddy_chill = daddy_chill->par;
-                    }
-                    node = daddy_chill;
-                }
-                else if (node == max_tree(node_root))
+            // if (node == NULL)
+            // {
+            //     node = node_root;
+            //     while (node != NULL && node->left != NULL)
+            //         node = node->left;
+            // }
+            // if (node->right)
+            // {
+            //     node = node->right;
+            //     while (node->left != NULL)
+            //         node = node->left;
+            // }
+            // else if (node->par)
+            // {
+            //     node_type *daddy_chill = node->par;
+            //     if (daddy_chill == node)
+            //         node = daddy_chill;
+            //     else if (daddy_chill->right == node)
+            //     {
+            //         while (daddy_chill && daddy_chill->right == node)
+            //         {
+            //             node = daddy_chill;
+            //             daddy_chill = daddy_chill->par;
+            //         }
+            //         node = daddy_chill;
+            //     }
+            //     else if (node == max_tree(node_root))
+            //         node = NULL;
+            // }
+            // return *this;
+                node_type* n = node;
+                node_type* max = maxValueNode(node_root);
+	
+                if (node == max)
+                {    
                     node = NULL;
-            }
-            return *this;
+                    end = node;
+                    return *this;
+                }
+                if (n && n->right != NULL)
+                    node = minValueNode(n->right);
+                else if (n && n->right == NULL)
+                {   
+                    node_type* p = n->par;
+                    while (p != NULL && n == p->right)
+                    {
+                        n = p;
+                        p = p->par;
+                        
+                    }
+                    node = p;
+                }
+
+                return (*this);
         };
+
         Bidirectional_iterator &operator--()
         {
-            if (node == NULL)
+            // if (node == NULL)
+            // {
+            //     node = node_root;
+            //     while (node != NULL && node->right != NULL)
+            //         node = node->right;
+            // }
+            // if (node->left)
+            // {
+            //     node = node->left;
+            //     while (node->right != NULL)
+            //         node = node->right;
+            // }
+            // else if (node->par)
+            // {
+            //     node_type *daddy_chill = node->par;
+            //     if (daddy_chill->right == node)
+            //         node = daddy_chill;
+            //     else if (daddy_chill->left == node)
+            //     {
+            //         while (daddy_chill && daddy_chill->left == node)
+            //         {
+            //             node = daddy_chill;
+            //             daddy_chill = node->par;
+            //         }
+            //         node = daddy_chill;
+            //     }
+            //     else if (node == min_tree(node_root))
+            //         node = NULL;
+            // }
+            // return *this;
+            node_type *n = node;
+          if (node == NULL && end)
+          {
+             node = end;
+              end = NULL;
+              return (*this);
+          }               
+        if (n && n->left != NULL)
+        {
+            node = maxValueNode(n->left);
+        }
+        else if (n && n->left == NULL)
+        {
+            node_type* p = n->par;
+            while (p != NULL && n == p->left)
             {
-                node = node_root;
-                while (node != NULL && node->right != NULL)
-                    node = node->right;
+                n = p;
+                p = p->par;
             }
-            if (node->left)
-            {
-                node = node->left;
-                while (node->right != NULL)
-                    node = node->right;
-            }
-            else if (node->par)
-            {
-                node_type *daddy_chill = node->par;
-                if (daddy_chill->right == node)
-                    node = daddy_chill;
-                else if (daddy_chill->left == node)
-                {
-                    while (daddy_chill && daddy_chill->left == node)
-                    {
-                        node = daddy_chill;
-                        daddy_chill = node->par;
-                    }
-                    node = daddy_chill;
-                }
-                else if (node == min_tree(node_root))
-                    node = NULL;
-            }
-            return *this;
+            node = p;
+        }
+        return (*this);
         };
+
         Bidirectional_iterator operator++(int)
         {
             Bidirectional_iterator tmp(*this);

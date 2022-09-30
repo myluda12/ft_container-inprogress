@@ -34,11 +34,11 @@ namespace ft
                 return reverse_iterator<const iterator_type>(this->_pointer);
             } 
 
-            // reference operator*() const
-            // {
-            //     Iterator tmp (_pointer);
-            //     return *tmp; 
-            // }
+            reference operator*() const
+            {
+                Iterator tmp (_pointer);
+                return *tmp; 
+            }
 
             reverse_iterator operator+ (difference_type n) const
             {
@@ -47,25 +47,25 @@ namespace ft
 
                 return tmp;
             }
-            // pointer operator->()const
+            pointer operator->()const
+            {
+                return &(operator*());
+            }
+            
+            
+            // reference operator*() const
             // {
-            //     return &(operator*());
-            // }
+            //     iterator_type tmp = _pointer;
+            //     return *--tmp;
+            // };
             
             
-            reference operator*() const
-            {
-                iterator_type tmp = _pointer;
-                return *--tmp;
-            };
-            
-            
-            pointer operator->() const
-            {
-                iterator_type tmp(_pointer);
-                --tmp;
-                return tmp.operator->(); 
-            };
+            // pointer operator->() const
+            // {
+            //     iterator_type tmp(_pointer);
+            //     --tmp;
+            //     return tmp.operator->(); 
+            // };
             
             reverse_iterator& operator++()
             {
