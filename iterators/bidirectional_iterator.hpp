@@ -283,7 +283,11 @@ namespace ft
         {
             node_type* p = n->par;
             while (p != NULL && n == p->left)
+<<<<<<< HEAD
         {
+=======
+            {
+>>>>>>> d9314acb5d7bd20f2c8601f43d5622aa79e04cdd
                 n = p;
                 p = p->par;
             }

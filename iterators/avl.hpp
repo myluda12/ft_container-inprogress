@@ -333,7 +333,11 @@ class avl {
             // if (root == NULL)
             //     std::cout << "Error in memory" << std::endl;
             // else {
+<<<<<<< HEAD
                 //root = _NodeAll.allocate(1);
+=======
+                root = _NodeAll.allocate(1);
+>>>>>>> d9314acb5d7bd20f2c8601f43d5622aa79e04cdd
                 root->pair = _PairAll.allocate(1);
                 _PairAll.construct(root->pair, _pair);
                 root->height = 1;

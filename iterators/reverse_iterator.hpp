@@ -25,6 +25,7 @@ namespace ft
             {
                 return _pointer;
             }
+<<<<<<< HEAD
 
             reference operator*() const
             {
@@ -39,6 +40,46 @@ namespace ft
                 return tmp.operator->();
             }
 
+=======
+            operator reverse_iterator<const iterator_type>() const 
+            {
+                return reverse_iterator<const iterator_type>(this->_pointer);
+            } 
+
+            reference operator*() const
+            {
+                Iterator tmp (_pointer);
+                return *tmp; 
+            }
+
+            reverse_iterator operator+ (difference_type n) const
+            {
+                reverse_iterator tmp(*this);
+                tmp._pointer =  tmp._pointer - n;
+
+                return tmp;
+            }
+            pointer operator->()const
+            {
+                return &(operator*());
+            }
+            
+            
+            // reference operator*() const
+            // {
+            //     iterator_type tmp = _pointer;
+            //     return *--tmp;
+            // };
+            
+            
+            // pointer operator->() const
+            // {
+            //     iterator_type tmp(_pointer);
+            //     --tmp;
+            //     return tmp.operator->(); 
+            // };
+            
+>>>>>>> d9314acb5d7bd20f2c8601f43d5622aa79e04cdd
             reverse_iterator& operator++()
             {
                 --_pointer;
