@@ -324,23 +324,22 @@ class avl {
     }
     node_type* Insert(node_type* root, node_type* parent, pair _pair)
     {
-    
+       // std::cout << "Pair" << _pair.first << ">" << _pair.second << std::endl;
         if (root == NULL) {
     
             // Create and assign values
             // to a new node
             root = _NodeAll.allocate(1);
-            if (root == NULL)
-                std::cout << "Error in memory" << std::endl;
-            else {
-                root = _NodeAll.allocate(1);
+            // if (root == NULL)
+            //     std::cout << "Error in memory" << std::endl;
+            // else {
+                //root = _NodeAll.allocate(1);
                 root->pair = _PairAll.allocate(1);
                 _PairAll.construct(root->pair, _pair);
                 root->height = 1;
                 root->left = NULL;
                 root->right = NULL;
                 root->par = parent;
-            }
         }
     
         else if (!_comp(root->pair->first, _pair.first)) {
@@ -363,9 +362,8 @@ class avl {
     
             // Balance the tree if the
             // current node is not balanced
-            if (abs(firstheight
-                    - secondheight)
-                == 2) {
+            if (abs(firstheight - secondheight) == 2) 
+            {
     
                 if (root->left != NULL
                     && _comp(_pair.first, root->left->pair->first)) {
@@ -419,6 +417,7 @@ class avl {
         // Case when given key is
         // already in tree
         else {
+            return root;
         }
     
         // Update the height of the

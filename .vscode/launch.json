@@ -8,7 +8,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "/Users/ayajrhou/Desktop/ft_pontainers_soso/iterators/a.out",
+            "program": "/Users/ayajrhou/Desktop/salahmhah/iterators/a.out",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
