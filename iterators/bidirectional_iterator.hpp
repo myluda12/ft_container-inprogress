@@ -26,6 +26,8 @@ namespace ft
         typedef typename iterator<std::random_access_iterator_tag, pair<const Key, T> >::iterator_category iterator_category;
         typedef node<const Key, T> node_type;
         typedef pair< Key, T> pair;
+        pair *stock;
+        
     
     private:
         node_type *node;
@@ -104,19 +106,27 @@ namespace ft
             node = _node;
             node_root = _root;
             end = NULL;
+            // if(node_root)
+            //     std::cout << "\n 2 Parameters :::: Node root:: " << node_root->pair->first <<  std::endl;
         };
         Bidirectional_iterator(node_type *_node,node_type *_root,node_type* end)
         {
+           // stock = a
             node = _node;
             node_root = _root;
             this->end = end;
+            // if (node_root)
+            //     std::cout << "\nParametrize Constructor with 3 Elements :: root :: " << node_root->pair->first << std::endl;
         }
         
         Bidirectional_iterator(Bidirectional_iterator const &other)
         {
             node = other.get_node();
+
             node_root = other.get_root();
             end = other.get_end();
+            // if (node_root)
+            //     std::cout << "\nCopy Constructor :: root :: " << node_root->pair->first << std::endl;
         };
 
         // Bidirectional_iterator(node_type *node_root, node_type *node)
@@ -283,11 +293,7 @@ namespace ft
         {
             node_type* p = n->par;
             while (p != NULL && n == p->left)
-<<<<<<< HEAD
-        {
-=======
             {
->>>>>>> d9314acb5d7bd20f2c8601f43d5622aa79e04cdd
                 n = p;
                 p = p->par;
             }

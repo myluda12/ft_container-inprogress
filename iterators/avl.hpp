@@ -41,8 +41,11 @@ class avl {
     compare _comp;
 
     public:
-    avl() {
-        
+    avl(rebind_allocator rebind = rebind_allocator(), _allocator alloc = _allocator(), compare _c = compare()) 
+    {
+        _NodeAll = rebind;
+        _PairAll = alloc;
+        _comp = _c;    
     }
     ~avl() {
         
@@ -333,17 +336,14 @@ class avl {
             // if (root == NULL)
             //     std::cout << "Error in memory" << std::endl;
             // else {
-<<<<<<< HEAD
                 //root = _NodeAll.allocate(1);
-=======
-                root = _NodeAll.allocate(1);
->>>>>>> d9314acb5d7bd20f2c8601f43d5622aa79e04cdd
                 root->pair = _PairAll.allocate(1);
                 _PairAll.construct(root->pair, _pair);
                 root->height = 1;
                 root->left = NULL;
                 root->right = NULL;
                 root->par = parent;
+                return root;
         }
     
         else if (!_comp(root->pair->first, _pair.first)) {

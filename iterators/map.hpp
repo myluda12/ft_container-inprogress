@@ -186,10 +186,16 @@ namespace ft
              //return (*((this->insert(ft::make_pair<const key_type, T>(x, T()))).first)).second;
 
             iterator it = find(x);
+            // if (it != end())
+            // {
+            //     std::cout  << "\n  pair  ==  "<< it.get_root()->pair->first <<  std::endl;
+            //     std::cout << "\n key == " << x << std::endl;
+            // }
 
-                if (it == end()) {
+                if (it == end()) 
+                {
                    // std::cout << "pair" << x.first << " " << x.second << std::endl;
-                    root = tree.Insert(root, NULL, ft::make_pair<const key_type, T>(x, T()));
+                    root  = tree.Insert(root, NULL, ft::make_pair<const key_type, T>(x, T()));
                     size_++;
                    // it = find(x);
                    // std::cout << "m e e e e s s s i ::: "<< it->second << std::endl;
@@ -289,14 +295,14 @@ namespace ft
         {
             node_type * found = tree.find(root ,k);
             if (found != NULL)
-                return iterator(root, found);
+                return iterator(found, root);
             return end();
         }
         const iterator find(const key_type &k) const
         {
             node_type * found = tree.find(root ,k);
             if (found != NULL)
-                return const_iterator(root, found);
+                return const_iterator(found, root);
             return end();
         }
 
@@ -309,19 +315,19 @@ namespace ft
 
         iterator lower_bound(const key_type& x)
         {
-            return iterator(root,tree.lowerBound(root,x));
+            return iterator(tree.lowerBound(root,x),root);
         }
         const_iterator lower_bound(const key_type& x) const
         {
-            return const_iterator(root,tree.lowerBound(root,x));
+            return const_iterator(tree.lowerBound(root,x),root);
         }
         iterator upper_bound(const key_type& x)
         {
-            return iterator(root,tree.upperbound(root,x));
+            return iterator(tree.upperbound(root,x),root);
         }
         const_iterator upper_bound(const key_type& x) const
         {
-            return const_iterator(root, tree.upperbound(root,x));
+            return const_iterator(tree.upperbound(root,x),root);
         }
 
         allocator_type get_allocator() const
