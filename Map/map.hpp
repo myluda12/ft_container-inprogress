@@ -111,13 +111,13 @@ namespace ft
         {
             if (this == &x)
                 return *this;
+            //int i = 1;
             //tree.Deleteall(root); REMINDEEER YOULL BACK AGAIN
-            size_ = 0;
+            //size_ = 0;
+            erase(begin(), end());
             for (const_iterator it = x.begin(); it != x.end(); it++)
-            {
                 insert(*it);
-                //size_++;
-            }
+            //size_++;
             size_ = x.size();
             return *this;
         }

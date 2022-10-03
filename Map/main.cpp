@@ -1082,32 +1082,86 @@ int main()
 //     // }
 // }
 // This code is contributed by
-// rathbhupendra
-std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase method "
-              << "] --------------------]\t\t\033[0m";
+// // rathbhupendra
+// std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase method "
+//               << "] --------------------]\t\t\033[0m";
 
+//     {
+//         bool cond(false);
+//         // erasing all the elements in the map;
+//         {
+//             time_t start, end, diff;
+//             /*------------------ std::maps ---------------------*/
+//             std::map<int, std::string> m1;
+//             ft::Map<int, std::string> ft_m1;
+//             for (size_t i = 0; i < 3; i++)
+//             {
+//                 m1.insert(std::make_pair(i, "string2"));
+//                 ft_m1.insert(ft::make_pair(i, "string2"));
+//             }
+//             m1.erase(m1.begin(), m1.end());
+        
+//             /*-----------------------------------------------------*/
+//             /*------------------ ft::Maps ---------------------*/
+     
+//             ft_m1.erase(ft_m1.begin(), ft_m1.end());
+      
+//             /*----------------------------------------------------*/
+//         }
+       
+//     }
+ std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " = operator (rhs.size = 0) "
+              << "] --------------------]\t\t\033[0m";
     {
-        bool cond(false);
-        // erasing all the elements in the map;
+        /*-------------------------------------- time limit test -----------------------------------*/
         {
             time_t start, end, diff;
-            /*------------------ std::maps ---------------------*/
+            /*------------------ std::nap ---------------------*/
             std::map<int, std::string> m1;
+            std::map<int, std::string> m2;
             ft::Map<int, std::string> ft_m1;
-            for (size_t i = 0; i < 3; i++)
+            ft::Map<int, std::string> ft_m2;
+
+            for (int i = 0; i < 10; ++i)
             {
-                m1.insert(std::make_pair(i, "string2"));
-                ft_m1.insert(ft::make_pair(i, "string2"));
+                m1.insert(std::make_pair(i, "string1"));
+                ft_m1.insert(ft::make_pair(i, "string1"));
             }
-            m1.erase(m1.begin(), m1.end());
-        
+
             /*-----------------------------------------------------*/
-            /*------------------ ft::Maps ---------------------*/
-     
-            ft_m1.erase(ft_m1.begin(), ft_m1.end());
-      
+            /*------------------ ft::Map ---------------------*/
+            ft_m1 = ft_m2;
             /*----------------------------------------------------*/
         }
-       
+        /*------------------------------------------------------------------------------------------*/
+        /*------------------ std::map ---------------------*/
+        std::map<int, std::string> m1;
+        std::map<int, std::string> m2;
+        ft::Map<int, std::string> ft_m1;
+        ft::Map<int, std::string> ft_m2;
+
+        for (int i = 0; i < 10; ++i)
+        {
+            m1.insert(std::make_pair(i, "string2"));
+            ft_m1.insert(ft::make_pair(i, "string2"));
+        }
+        m1 = m2;
+        /*-----------------------------------------------------*/
+        /*------------------ ft::Map ---------------------*/
+        ft_m1 = ft_m2;
+        /*----------------------------------------------------*/
+        /*------------------ strings to store the results ----*/
+        std::string res, ft_res;
+        /*----------------------------------------------------*/
+        for (std::map<int, std::string>::iterator it = m1.begin(); it != m1.end(); ++it) // fill res from m1
+            res += it->second;
+
+        for (ft::Map<int, std::string>::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+            ft_res += it->second;
+
+        std::cout << "\nft::map == " << ft_res << std::endl;
+        std::cout << "\nstd::map == " << res << std::endl;
+        EQUAL(res == ft_res);
     }
 }
+// }
