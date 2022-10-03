@@ -5,7 +5,7 @@
 
 namespace ft
 {
-    template< class T >
+     template <class T, class Alloc = std::allocator<T> > 
     class random_access_iterator
     {
         public :
@@ -40,7 +40,6 @@ namespace ft
                 _pointer++;
                 return prev;
             }
-
             random_access_iterator& operator--()
             {
                 --_pointer;
@@ -148,7 +147,7 @@ namespace ft
         template <class T>
         bool    operator==(const random_access_iterator<T> &it1, const random_access_iterator<T> &it2)
         {
-        return (it1.get_pointer() == it2.get_pointer());
+            return (it1.get_pointer() == it2.get_pointer());
         };
         template <class T>
         bool    operator!=(const random_access_iterator<T> &it1, const random_access_iterator<T> &it2)

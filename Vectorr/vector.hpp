@@ -53,7 +53,7 @@ namespace ft
 
               // template <class InputIterator>
               // vector (InputIterator first, InputIterator last, const allocator_type& _alloc = allocator_type()) : _alloc(_alloc)
-              			template <class InputIterator>
+              template <class InputIterator>
          	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
 			typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator()): _alloc(alloc)
               {

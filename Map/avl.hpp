@@ -434,7 +434,7 @@ class avl {
     
     // Function to delete a node from
     // the AVL tree
-    node_type* Delete(node_type* root,pair _pair)
+    node_type* Delete(node_type* root,pair _pair, int *index)
     {
         if (root != NULL) {
     
@@ -443,11 +443,11 @@ class avl {
     
                 // Replace root with its
                 // left child
-                if (root->right == NULL
-                    && root->left != NULL) {
-                    if (root->par != NULL) {
-                        if (_comp(root->par->pair->first
-                            , root->pair->first))
+                if (root->right == NULL && root->left != NULL)
+                {
+                    if (root->par != NULL) 
+                    {
+                        if (_comp(root->par->pair->first , root->pair->first))
                             root->par->right = root->left;
                         else
                             root->par->left = root->left;
@@ -461,19 +461,18 @@ class avl {
     
                     // Balance the node
                     // after deletion
-                    root->left = Balance(
-                        root->left);
+                    root->left = Balance(root->left);
     
                     return root->left;
                 }
     
                 // Replace root with its
                 // right child
-                else if (root->left == NULL
-                        && root->right != NULL) {
-                    if (root->par != NULL) {
-                        if (_comp(root->par->pair->first
-                            , root->pair->first))
+                else if (root->left == NULL && root->right != NULL) 
+                {
+                    if (root->par != NULL) 
+                    {
+                        if (_comp(root->par->pair->first , root->pair->first))
                             root->par->right = root->right;
                         else
                             root->par->left = root->right;
@@ -493,12 +492,13 @@ class avl {
     
                 // Remove the references of
                 // the current node
-                else if (root->left == NULL
-                        && root->right == NULL) {
-                    if (_comp(root->par->pair->first, root->pair->first)) {
+                else if (root->left == NULL && root->right == NULL) 
+                {
+                    if ( root->par && _comp(root->par->pair->first, root->pair->first)) {
                         root->par->right = NULL;
                     }
-                    else {
+                    else if (root->par)
+                    {
                         root->par->left = NULL;
                     }
     
@@ -513,17 +513,17 @@ class avl {
                 // current node with its
                 // successor and then
                 // recursively call Delete()
-                else {
+                else 
+                {
                     node_type* tmpnode = root;
                     tmpnode = tmpnode->right;
-                    while (tmpnode->left != NULL) {
+                    while (tmpnode->left != NULL) 
                         tmpnode = tmpnode->left;
-                    }
     
                     pair *val =  tmpnode->pair;
                     // tmpnode->pair;
     
-                    root->right = Delete(root->right, *tmpnode->pair);
+                    root->right = Delete(root->right, *tmpnode->pair,index);
     
                     root->pair = val;
     
@@ -533,10 +533,12 @@ class avl {
                 }
             }
     
+
             // Recur to the right subtree to
             // delete the current node
-            else if (_comp(root->pair->first, _pair.first)) {
-                root->right = Delete(root->right, _pair);
+            else if (_comp(root->pair->first, _pair.first))
+             {
+                root->right = Delete(root->right, _pair,index);
     
                 root = Balance(root);
             }
@@ -544,7 +546,7 @@ class avl {
             // Recur into the right subtree
             // to delete the current node
             else if (!_comp(root->pair->first, _pair.first)) {
-                root->left = Delete(root->left, _pair);
+                root->left = Delete(root->left, _pair,index);
     
                 root = Balance(root);
             }
@@ -557,9 +559,9 @@ class avl {
     
         // Handle the case when the key to be
         // deleted could not be found
-        else {
-            std::cout << "Key to be deleted "
-                << "could not be found\n";
+        else 
+        {
+            *index = 0;
         }
     
         // Return the root node

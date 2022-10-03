@@ -5,6 +5,7 @@
 #include "../Vectorr/reverse_iterator.hpp"
 #include "bidirectional_iterator.hpp"
 #include "utils.hpp"
+#include "../Vectorr/vector.hpp"
 
 namespace ft
 {
@@ -71,7 +72,13 @@ namespace ft
             root = NULL;
             compare = comp;
             alloc = alloca;
-            insert(first, last);
+            // for(InputIterator it = first; it != last; it++)
+            // {
+            //     root = tree.Insert(root,NULL,*it);
+            //     size_++;
+            // }
+            insert(first,last);
+
         }
         //  template<class InputIterator>
         //  Map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(),const allocator_type &alloca = allocator_type()
@@ -97,6 +104,7 @@ namespace ft
         }
         ~Map()
         {
+
             //root = tree.Deleteall(root);
         }
         Map<Key, T, Compare, Allocator> &operator=(const Map<Key, T, Compare, Allocator> &x)
@@ -108,8 +116,9 @@ namespace ft
             for (const_iterator it = x.begin(); it != x.end(); it++)
             {
                 insert(*it);
-                size_++;
+                //size_++;
             }
+            size_ = x.size();
             return *this;
         }
 
@@ -209,7 +218,7 @@ namespace ft
         {
             iterator it = find(k.first);
             if(it!= end())
-            return pair<iterator,bool>(it, false);
+                return pair<iterator,bool>(it, false);
                root = tree.Insert(root, NULL, k);
             //    std::cout << "inseted" 
                size_++;
@@ -236,25 +245,39 @@ namespace ft
         }
         void erase(iterator position)
         {
-            root = tree.Delete(root, *position);
-            size_--;
+            int index = 1;
+            //iterator 
+            if (position != end())
+            {
+                root = tree.Delete(root, *position, &index);
+                size_--;
+            }
+
         }
         size_t erase(const key_type &k)
         {
+            int index = 1;
             iterator it = find(k);
             if (it == end())
                 return 0;
-            root = tree.Delete(root, *it);
+            root = tree.Delete(root, *it,&index);
             size_--;
-            return 1;
+            return index;
         }
         void erase(iterator first, iterator last)
         {
-            for (iterator it = first; it != last; it++)
-            {
-                root = tree.Delete(root, *it);
-                size_--;
-            }
+            ft::vector<Key> tmp;
+            for(iterator it = first; it != last; it++)
+                tmp.push_back(it->first);
+
+            for (size_t i = 0; i < tmp.size(); i++)
+                erase(tmp[i]);
+            // int index = 1;
+            // for (iterator it = first; it != last; it++)
+            // {
+            //     root = tree.Delete(root, *it,&index);
+            //     size_--;
+            // }
         }
 
 

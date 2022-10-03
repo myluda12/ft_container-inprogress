@@ -819,53 +819,53 @@ int main()
     //         ft_m1[10 - 2] = ft_m1[9];
     //         /*----------------------------------------------------*/
     //     }
-        std::map<char, std::string> m;
-        ft::Map<char, std::string> ft_m;
+    //     std::map<char, std::string> m;
+    //     ft::Map<char, std::string> ft_m;
 
-        // m['a'] = "an element";
-        // m['b'] = "??????";
-        // m['c'] = "achraf";
+    //     // m['a'] = "an element";
+    //     // m['b'] = "??????";
+    //     // m['c'] = "achraf";
 
-        ft_m['a'] = "an element";
-         ft_m['b'] = "?????";
-        // ft_m['c'] = "achraf";
-        // ft_m['d'] = "ss";
-        // ft_m['e'] = "d";
-        // ft_m['f'] = "w";
-        // ft_m['g'] = "q";
-        // std::cout << m['a'] << std::endl;
-        // ft_m['c'] = "achraf";
-        // ft_m['d'] = "ni";
+    //     ft_m['a'] = "an element";
+    //      ft_m['b'] = "?????";
+    //     // ft_m['c'] = "achraf";
+    //     // ft_m['d'] = "ss";
+    //     // ft_m['e'] = "d";
+    //     // ft_m['f'] = "w";
+    //     // ft_m['g'] = "q";
+    //     // std::cout << m['a'] << std::endl;
+    //     // ft_m['c'] = "achraf";
+    //     // ft_m['d'] = "ni";
 
  
 
-        std::cout << "" << ft_m['a'] << std::endl;
-         std::cout << "" << ft_m['b'] << std::endl;
-        // std::cout << "" << ft_m['c'] << std::endl;
-        // std::cout << "" << ft_m['d'] << std::endl;
-        // std::cout << "" << ft_m['e'] << std::endl;
+    //     std::cout << "" << ft_m['a'] << std::endl;
+    //      std::cout << "" << ft_m['b'] << std::endl;
+    //     // std::cout << "" << ft_m['c'] << std::endl;
+    //     // std::cout << "" << ft_m['d'] << std::endl;
+    //     // std::cout << "" << ft_m['e'] << std::endl;
 
-        // std::cout << "c = " << ft_m['c'] << std::endl;
-        // std::cout << "d = " << ft_m['d'] << std::endl;
+    //     // std::cout << "c = " << ft_m['c'] << std::endl;
+    //     // std::cout << "d = " << ft_m['d'] << std::endl;
  
 
 
 
-        ft_m.printTree(ft_m.get_root(),NULL,false);
-        //ft_m['c'] = "fahiiid";
-       // ft_m['a'] = "test";
+    //     ft_m.printTree(ft_m.get_root(),NULL,false);
+    //     //ft_m['c'] = "fahiiid";
+    //    // ft_m['a'] = "test";
 
-        // std::cout << "m['a'] = " << m['a'] << std::endl;
-        // std::cout << "m['b'] = " << m['b'] << std::endl;
+    //     // std::cout << "m['a'] = " << m['a'] << std::endl;
+    //     // std::cout << "m['b'] = " << m['b'] << std::endl;
         
-        // std::cout << "my map:: " << std::endl;
+    //     // std::cout << "my map:: " << std::endl;
 
-        // std::cout << "ft_m['a'] = " << ft_m['a'] << std::endl;
-        // std::cout << "ft_m['b'] = " << ft_m['b'] << std::endl;
-       // std::cout << "ft_m['c'] = " << ft_m['c'] << std::endl;
+    //     // std::cout << "ft_m['a'] = " << ft_m['a'] << std::endl;
+    //     // std::cout << "ft_m['b'] = " << ft_m['b'] << std::endl;
+    //    // std::cout << "ft_m['c'] = " << ft_m['c'] << std::endl;
 
-        EQUAL(m['a'] == ft_m['a'] && m['b'] == ft_m['b'] && m['c'] == ft_m['c'] && m.size() == ft_m.size());
-    }
+    //     EQUAL(m['a'] == ft_m['a'] && m['b'] == ft_m['b'] && m['c'] == ft_m['c'] && m.size() == ft_m.size());
+    // }
 //       std::cout << "\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert method "
 //               << "] --------------------]\t\t\033[0m\n";
 //     {
@@ -1083,3 +1083,31 @@ int main()
 // }
 // This code is contributed by
 // rathbhupendra
+std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase method "
+              << "] --------------------]\t\t\033[0m";
+
+    {
+        bool cond(false);
+        // erasing all the elements in the map;
+        {
+            time_t start, end, diff;
+            /*------------------ std::maps ---------------------*/
+            std::map<int, std::string> m1;
+            ft::Map<int, std::string> ft_m1;
+            for (size_t i = 0; i < 3; i++)
+            {
+                m1.insert(std::make_pair(i, "string2"));
+                ft_m1.insert(ft::make_pair(i, "string2"));
+            }
+            m1.erase(m1.begin(), m1.end());
+        
+            /*-----------------------------------------------------*/
+            /*------------------ ft::Maps ---------------------*/
+     
+            ft_m1.erase(ft_m1.begin(), ft_m1.end());
+      
+            /*----------------------------------------------------*/
+        }
+       
+    }
+}
