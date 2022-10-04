@@ -1171,297 +1171,357 @@ bool compareMaps(Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
 
 //VECTOR TESTS FOR CORRECTION
 
+// int main()
+// {
+//     //fill constructor vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " fill constructor withh 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         /*------------------ std::vector ---------------------*/
+//         ft::vector<int> ft_v1(5, 10);
+//         /*-----------------------------------------------------*/
+//         /*------------------ ft::vector ---------------------*/
+//         /*----------------------------------------------------*/
+//         /*------------------ strings to store the results ----*/
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+
+//     //range constructor vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " range constructor with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         /*------------------ std::vector ---------------------*/
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2(ft_v1.begin(), ft_v1.end());
+//         /*-----------------------------------------------------*/
+//         /*------------------ ft::vector ---------------------*/
+//         /*----------------------------------------------------*/
+//         /*------------------ strings to store the results ----*/
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //copy constructor vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " copy constructor with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2(ft_v1);
+//         /*------------------ strings to store the results ----*/
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //operator= vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator= with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         /*------------------ std::vector ---------------------*/
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2;
+//         ft_v2 = ft_v1;
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //operator== vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator== with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2(5, 10);
+ 
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         if (ft_v1 == ft_v2)
+//             ft_res = "true";
+//         else
+//             ft_res = "false";
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //operator!= vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator!= with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2(5, 10);
+//         std::string ft_res;
+//         if (ft_v1 != ft_v2)
+//             ft_res = "true";
+//         else
+//             ft_res = "false";
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //begin and end methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " begin and end methode with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+
+//         std::string ft_res;
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+//     //rbegin vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " rbegin and rend methode 10-...-40 "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1;
+//         ft_v1.push_back(10);
+//         ft_v1.push_back(20);
+//         ft_v1.push_back(30);
+//         ft_v1.push_back(40);
+
+//         std::string ft_res;
+//         for (ft::vector<int>::reverse_iterator it = ft_v1.rbegin(); it != ft_v1.rend(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+//     //size methode vector test
+
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " size methode with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+
+//         std::string ft_res;
+//         ft_res = std::to_string(ft_v1.size());
+
+//         std::cout << "\nft::vector_size == " << ft_res << std::endl;
+//     }
+
+//     //insert methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the begin of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+
+//         ft::vector<int> ft_v1(5, 10);
+//         ft_v1.insert(ft_v1.begin(), 7);
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //insert methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the end of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+
+//         ft::vector<int> ft_v1(5, 10);
+//         ft_v1.insert(ft_v1.end(), 7);
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //insert methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the middle of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         /*------------------ std::vector ---------------------*/
+//         ft::vector<int> ft_v1(5, 10);
+//         ft_v1.insert(ft_v1.begin() + 2, 7);
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //insert range methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert range 7-8-9 in the begin of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft::vector<int> ft_v2;
+//         ft_v2.push_back(7);
+//         ft_v2.push_back(8);
+//         ft_v2.push_back(9);
+//         ft_v1.insert(ft_v1.begin(), ft_v2.begin(), ft_v2.end());
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //erase methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase the begin of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft_v1.erase(ft_v1.begin());
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+
+//     //erase range methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase range the begin to the end of 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1(5, 10);
+//         ft_v1.erase(ft_v1.begin(), ft_v1.end());
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //at methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " at methode with 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1;
+//         ft_v1.push_back(10);
+//         ft_v1.push_back(20);
+//         ft_v1.push_back(30);
+//         ft_v1.push_back(40);
+//         ft_v1.push_back(50);
+
+//         std::string ft_res;
+//         ft_res = std::to_string(ft_v1.at(0));
+
+//         std::cout << "\nft::vector_at == " << ft_res << std::endl;
+//     }
+
+//     //assign methode vector test (NECESSARY TO EXPLAIIN WHY IT IS IMPORTANT THE ENABLE IF !!!!)
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " assign 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1;
+//         ft_v1.assign(5, 10);
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+//     //assign range methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " assign range 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1;
+//         ft::vector<int> ft_v2;
+//         ft_v2.push_back(10);
+//         ft_v2.push_back(20);
+//         ft_v2.push_back(30);
+//         ft_v2.push_back(40);
+//         ft_v2.push_back(50);
+//         ft_v1.assign(ft_v2.begin(), ft_v2.end());
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+
+//     //swap methode vector test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " swap 5 elements "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::vector<int> ft_v1;
+//         ft::vector<int> ft_v2;
+//         ft_v1.push_back(10);
+//         ft_v1.push_back(20);
+//         ft_v1.push_back(30);
+//         ft_v1.push_back(40);
+//         ft_v1.push_back(50);
+//         ft_v2.push_back(60);
+//         ft_v2.push_back(70);
+//         ft_v2.push_back(80);
+//         ft_v2.push_back(90);
+//         ft_v2.push_back(100);
+//         ft_v1.swap(ft_v2);
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(*it);
+
+//         std::cout << "\nft::vector == " << ft_res << std::endl;
+//     }
+
+// }
+
+
+
+// STACK TESTS FOR CORRECTION
+#include "../Vectorr/stack.hpp"
 int main()
 {
-    //fill constructor vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " fill constructor withh 5 elements "
+    //stack constructor test
+    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack constructor test "
               << "] --------------------]\t\t\033[0m";
     {
-        /*------------------ std::vector ---------------------*/
-        ft::vector<int> ft_v1(5, 10);
-        /*-----------------------------------------------------*/
-        /*------------------ ft::vector ---------------------*/
-        /*----------------------------------------------------*/
-        /*------------------ strings to store the results ----*/
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
+        ft::Stack<int> ft_s1;
+        std::cout << "\nft::stack == " << ft_s1.size() << std::endl;
     }
 
+    // //stack push test
+    // std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack push test "
+    //           << "] --------------------]\t\t\033[0m";
+    // {
+    //     ft::Stack<int> ft_s1;
+    //     ft_s1.push(10);
+    //     ft_s1.push(20);
+    //     ft_s1.push(30);
+    //     ft_s1.push(40);
+    //     ft_s1.push(50);
 
-    //range constructor vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " range constructor with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        /*------------------ std::vector ---------------------*/
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2(ft_v1.begin(), ft_v1.end());
-        /*-----------------------------------------------------*/
-        /*------------------ ft::vector ---------------------*/
-        /*----------------------------------------------------*/
-        /*------------------ strings to store the results ----*/
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
+    //     std::string ft_res;
+    //     /*----------------------------------------------------*/
 
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //copy constructor vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " copy constructor with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2(ft_v1);
-        /*------------------ strings to store the results ----*/
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //operator= vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator= with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        /*------------------ std::vector ---------------------*/
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2;
-        ft_v2 = ft_v1;
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v2.begin(); it != ft_v2.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //operator== vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator== with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2(5, 10);
- 
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        if (ft_v1 == ft_v2)
-            ft_res = "true";
-        else
-            ft_res = "false";
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //operator!= vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " operator!= with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2(5, 10);
-        std::string ft_res;
-        if (ft_v1 != ft_v2)
-            ft_res = "true";
-        else
-            ft_res = "false";
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //begin and end methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " begin and end methode with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-
-        std::string ft_res;
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-    //rbegin vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " rbegin and rend methode 10-...-40 "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1;
-        ft_v1.push_back(10);
-        ft_v1.push_back(20);
-        ft_v1.push_back(30);
-        ft_v1.push_back(40);
-
-        std::string ft_res;
-        for (ft::vector<int>::reverse_iterator it = ft_v1.rbegin(); it != ft_v1.rend(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-    //size methode vector test
-
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " size methode with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-
-        std::string ft_res;
-        ft_res = std::to_string(ft_v1.size());
-
-        std::cout << "\nft::vector_size == " << ft_res << std::endl;
-    }
-
-    //insert methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the begin of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-
-        ft::vector<int> ft_v1(5, 10);
-        ft_v1.insert(ft_v1.begin(), 7);
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //insert methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the end of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-
-        ft::vector<int> ft_v1(5, 10);
-        ft_v1.insert(ft_v1.end(), 7);
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //insert methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert 7 in the middle of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        /*------------------ std::vector ---------------------*/
-        ft::vector<int> ft_v1(5, 10);
-        ft_v1.insert(ft_v1.begin() + 2, 7);
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //insert range methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " insert range 7-8-9 in the begin of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft::vector<int> ft_v2;
-        ft_v2.push_back(7);
-        ft_v2.push_back(8);
-        ft_v2.push_back(9);
-        ft_v1.insert(ft_v1.begin(), ft_v2.begin(), ft_v2.end());
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //erase methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase the begin of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft_v1.erase(ft_v1.begin());
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-
-    //erase range methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " erase range the begin to the end of 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1(5, 10);
-        ft_v1.erase(ft_v1.begin(), ft_v1.end());
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //at methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " at methode with 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1;
-        ft_v1.push_back(10);
-        ft_v1.push_back(20);
-        ft_v1.push_back(30);
-        ft_v1.push_back(40);
-        ft_v1.push_back(50);
-
-        std::string ft_res;
-        ft_res = std::to_string(ft_v1.at(0));
-
-        std::cout << "\nft::vector_at == " << ft_res << std::endl;
-    }
-
-    //assign methode vector test (NECESSARY TO EXPLAIIN WHY IT IS IMPORTANT THE ENABLE IF !!!!)
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " assign 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1;
-        ft_v1.assign(5, 10);
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
-
-    //assign range methode vector test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " assign range 5 elements "
-              << "] --------------------]\t\t\033[0m";
-    {
-        ft::vector<int> ft_v1;
-        ft::vector<int> ft_v2;
-        ft_v2.push_back(10);
-        ft_v2.push_back(20);
-        ft_v2.push_back(30);
-        ft_v2.push_back(40);
-        ft_v2.push_back(50);
-        ft_v1.assign(ft_v2.begin(), ft_v2.end());
-
-        std::string ft_res;
-        /*----------------------------------------------------*/
-        for (ft::vector<int>::iterator it = ft_v1.begin(); it != ft_v1.end(); ++it) // fill ft_res from ft_m1
-            ft_res += std::to_string(*it);
-
-        std::cout << "\nft::vector == " << ft_res << std::endl;
-    }
+    //     std::cout << "\nft::stack == " << ft_res << std::endl;
+    // }
 }
