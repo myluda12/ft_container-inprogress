@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "../Map/utils.hpp"
 
 
 namespace ft
@@ -55,7 +56,7 @@ namespace ft
               // vector (InputIterator first, InputIterator last, const allocator_type& _alloc = allocator_type()) : _alloc(_alloc)
               template <class InputIterator>
          	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
-			typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator()): _alloc(alloc)
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = InputIterator()): _alloc(alloc)
               {
                 size_t n = last - first;
                 _buff = _alloc.allocate(n);
@@ -338,7 +339,7 @@ namespace ft
                 _size += n;
             }
             template <class InputIterator>
-            void insert(iterator position, InputIterator first, InputIterator last , typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
+            void insert(iterator position, InputIterator first, InputIterator last , typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
             {
               size_type n = last - first;
               size_type index = 0;
@@ -422,74 +423,51 @@ namespace ft
                 size_type _capacity;
     };
 
-   // std::equal
-    template <class InputIterator1, class InputIterator2>
-    bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
-    {
-      size_t len = std::distance(first1,last1);
-      for (size_t i = 0 ; i < len ; i++)
-      {
-        if (first1[i] != first2[i])
-          return false;
-      }
-      return true;
-    }
-
-    template <class InputIterator1, class InputIterator2, class BinaryPredicate>
-    bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred)
-    {
-      size_t len = std::distance(first1,last1);
-      for (size_t i = 0 ; i < len ; i++)
-      {
-        if (!pred(first1[i],first2[i]))
-          return false;
-      }
-      return true;
-    }
+  
     //lexicographical_compare
-    template <class InputIterator1, class InputIterator2>
-    bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
-    {
-      size_t len1 = std::distance(first1,last1);
-      size_t len2 = std::distance(first2,last2);
-      if (len1 < len2)
-        return true;
-      else if (len1 > len2)
-        return false;
-      else
-      {
-        for (size_t i = 0 ; i < len1 ; i++)
-        {
-          if (first1[i] < first2[i])
-            return true;
-          else if (first1[i] > first2[i])
-            return false;
-        }
-        return false;
-      }
-    };
+    // template <class InputIterator1, class InputIterator2>
+    // bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
+    // {
+    //   size_t len1 = std::distance(first1,last1);
+    //   size_t len2 = std::distance(first2,last2);
+    //   if (len1 < len2)
+    //     return true;
+    //   else if (len1 > len2)
+    //     return false;
+    //   else
+    //   {
+    //     for (size_t i = 0 ; i < len1 ; i++)
+    //     {
+    //       if (first1[i] < first2[i])
+    //         return true;
+    //       else if (first1[i] > first2[i])
+    //         return false;
+    //     }
+    //     return false;
+    //   }
+    // };
 
-    template <class InputIterator1, class InputIterator2, class Compare>
-    bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2, Compare comp)
-    {
-      size_t len1 = std::distance(first1,last1);
-      size_t len2 = std::distance(first2,last2);
-      if (len1 < len2)
-        return true;
-      else if (len1 > len2)
-        return false;
-      else
-      {
-        for (size_t i = 0 ; i < len1 ; i++)
-        {
-          if (comp(first1[i],first2[i]))
-            return true;
-          else if (comp(first2[i],first1[i]))
-            return false;
-        }
-        return false;
-      }
-    };
+    // template <class InputIterator1, class InputIterator2, class Compare>
+    // bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2, Compare comp)
+    // {
+    //   size_t len1 = std::distance(first1,last1);
+    //   size_t len2 = std::distance(first2,last2);
+    //   if (len1 < len2)
+    //     return true;
+    //   else if (len1 > len2)
+    //     return false;
+    //   else
+    //   {
+    //     for (size_t i = 0 ; i < len1 ; i++)
+    //     {
+    //       if (comp(first1[i],first2[i]))
+    //         return true;
+    //       else if (comp(first2[i],first1[i]))
+    //         return false;
+    //     }
+    //     return false;
+    //   }
+    // };
 
     template <class U, class alloc>
   	bool operator==(const vector<U,alloc>& x, const vector<U,alloc>& y)

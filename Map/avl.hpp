@@ -88,7 +88,7 @@ class avl {
         }
     }
     
-    void Updateheight(node_type* root)
+    void height_again(node_type* root)
     {
         if (root != NULL) 
         {
@@ -103,7 +103,7 @@ class avl {
         }
     }
     
-    node_type* Left_Left_rotate(node_type* root)
+    node_type* left_left(node_type* root)
     {
 
         node_type* tmpnode = root->left;
@@ -130,15 +130,15 @@ class avl {
     
         root = tmpnode;
     
-        Updateheight(root->left);
-        Updateheight(root->right);
-        Updateheight(root);
-        Updateheight(root->par);
+        height_again(root->left);
+        height_again(root->right);
+        height_again(root);
+        height_again(root->par);
     
         return root;
     }
     
-    node_type* Right_Right_rotate (node_type* root)
+    node_type* right_right (node_type* root)
     {
 
         node_type* tmpnode = root->right;
@@ -167,24 +167,24 @@ class avl {
     
         root = tmpnode;
     
-        Updateheight(root->left);
-        Updateheight(root->right);
-        Updateheight(root);
-        Updateheight(root->par);
+        height_again(root->left);
+        height_again(root->right);
+        height_again(root);
+        height_again(root->par);
     
         return root;
     }
     
-    node_type* Left_Right_Right(node_type* root)
+    node_type* left_right(node_type* root)
     {
-        root->left = Right_Right_rotate(root->left);
-        return Left_Left_rotate(root);
+        root->left = right_right(root->left);
+        return left_left(root);
     }
     
-    node_type* Right_Left_rotate(node_type* root)
+    node_type* right_left(node_type* root)
     {
-        root->right = Left_Left_rotate(root->right);
-        return Right_Right_rotate(root);
+        root->right = left_left(root->right);
+        return right_right(root);
     }
     
 
@@ -215,10 +215,10 @@ class avl {
     
                 if (rightheight1 > rightheight2) {
     
-                    root = Right_Left_rotate(root);
+                    root = right_left(root);
                 }
                 else 
-                    root = Right_Right_rotate(root);
+                    root = right_right(root);
             }
             else 
             {
@@ -232,9 +232,9 @@ class avl {
                     leftheight1 = root->left->left->height;
     
                 if (leftheight1 > leftheight2) 
-                    root = Left_Left_rotate(root);
+                    root = left_left(root);
                 else
-                    root = Left_Right_Right(root);
+                    root = left_right(root);
             }
         }
         return root;
@@ -278,7 +278,6 @@ class avl {
         else if (!_comp(root->pair->first, _pair.first)) 
         {
             root->left = Insert(root->left,root, _pair);
-
             int firstheight = 0;
             int secondheight = 0;
     
@@ -292,16 +291,15 @@ class avl {
             {
     
                 if (root->left != NULL && _comp(_pair.first, root->left->pair->first)) 
-                    root = Left_Left_rotate(root);
+                    root = left_left(root);
                 else
-                    root = Left_Right_Right(root);
+                    root = left_right(root);
             }
         }
     
         else if (_comp(root->pair->first, _pair.first))
         {
             root->right = Insert(root->right,root, _pair);
-
             int firstheight = 0;
             int secondheight = 0;
     
@@ -314,15 +312,15 @@ class avl {
             if (abs(firstheight - secondheight) == 2) 
             {
                 if (root->right != NULL && _comp(_pair.first, root->right->pair->first)) 
-                    root = Right_Left_rotate(root);
+                    root = right_left(root);
                 else
-                    root = Right_Right_rotate(root);
+                    root = right_right(root);
             }
         }
         else 
             return root;
     
-        Updateheight(root);
+        height_again(root);
 
         return root;
     }
@@ -341,7 +339,7 @@ class avl {
                             root->par->right = root->left;
                         else
                             root->par->left = root->left;
-                        Updateheight(root->par);
+                        height_again(root->par);
                     }
     
                     root->left->par = root->par;
@@ -363,7 +361,7 @@ class avl {
                             root->par->left = root->right;
     
 
-                        Updateheight(root->par);
+                        height_again(root->par);
                     }
     
                     root->right->par = root->par;
@@ -383,7 +381,7 @@ class avl {
                     }
     
                     if (root->par != NULL)
-                        Updateheight(root->par);
+                        height_again(root->par);
     
                     root = NULL;
                     return NULL;
@@ -422,7 +420,7 @@ class avl {
             }
     
             if (root != NULL) 
-                Updateheight(root);
+                height_again(root);
         }
 
         else 

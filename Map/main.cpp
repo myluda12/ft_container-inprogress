@@ -1497,31 +1497,340 @@ bool compareMaps(Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
 
 
 // STACK TESTS FOR CORRECTION
+// #include "../Vectorr/stack.hpp"
+// int main()
+// {
+//     //stack constructor test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack constructor test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Stack<int> ft_s1;
+//         std::cout << "\nft::stack == " << ft_s1.size() << std::endl;
+//     }
+
+//     // //stack push test
+//     // std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack push test "
+//     //           << "] --------------------]\t\t\033[0m";
+//     // {
+//     //     ft::Stack<int> ft_s1;
+//     //     ft_s1.push(10);
+//     //     ft_s1.push(20);
+//     //     ft_s1.push(30);
+//     //     ft_s1.push(40);
+//     //     ft_s1.push(50);
+
+//     //     std::string ft_res;
+//     //     /*----------------------------------------------------*/
+
+//     //     std::cout << "\nft::stack == " << ft_res << std::endl;
+//     // }
+// }
+
+//Map tests for correction
+
+
+
+
+// int main()
+// {
+//     //map constructor test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " map constructor test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         std::cout << "\nft::Map == " << ft_m1.size() << std::endl;
+//     };
+
+//     //Map insert test
+//     std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " Map insert test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+
+//         std::string ft_res;
+//         /*----------------------------------------------------*/
+//         for (ft::Map<int, int>::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(it->first) + " ";
+
+//         std::cout << "\nft::Map == " << ft_res << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+
+//     };
+
+//     //Map insert range test
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map insert range test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft::Map<int, int> ft_m2;
+//         ft_m2.insert(ft::make_pair(10, 10));
+//         ft_m2.insert(ft::make_pair(20, 20));
+//         ft_m2.insert(ft::make_pair(30, 30));
+//         ft_m2.insert(ft::make_pair(40, 40));
+//         ft_m2.insert(ft::make_pair(50, 50));
+//         ft_m1.insert(ft_m2.begin(), ft_m2.end());
+
+//         std::string ft_res;
+//         for(ft::Map<int, int> ::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(it->first) + " " + " ";
+//         std::cout << "\nft::Map == " << ft_res << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+//     //Map erase test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map erase test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft_m1.erase(30);
+
+//         std::string ft_res;
+//         for(ft::Map<int, int> ::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(it->first) + " ";
+//         std::cout << "\nft::Map == " << ft_res << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+//     //Map erase range test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map erase range test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft_m1.erase(ft_m1.begin(), ft_m1.find(40));
+
+//         std::string ft_res;
+//         for(ft::Map<int, int> ::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(it->first) + " ";
+//         std::cout << "\nft::Map == " << ft_res << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+//     //Map swap test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map swap test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft::Map<int, int> ft_m2;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft_m2.insert(ft::make_pair(100, 100));
+//         ft_m2.insert(ft::make_pair(200, 200));
+//         ft_m2.insert(ft::make_pair(300, 300));
+//         ft_m2.insert(ft::make_pair(400, 400));
+//         ft_m2.insert(ft::make_pair(500, 500));
+//         ft_m2.swap(ft_m1);
+
+//         std::string ft_res;
+//         for(ft::Map<int, int> ::iterator it = ft_m1.begin(); it != ft_m1.end(); ++it) // fill ft_res from ft_m1
+//             ft_res += std::to_string(it->first) + " ";
+//         std::cout << "\nft::Map == " << ft_res << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m2.printTree(ft_m2.get_root(),NULL, false);
+//     };
+
+//     //Map upperbound test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map upperbound test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft::Map<int, int>::iterator it = ft_m1.upper_bound(30);
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+//     //map lowerbound test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map lowerbound test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft::Map<int, int>::iterator it = ft_m1.lower_bound(30);
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+//     //map equal_range test
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Map equal_range test "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft::Map<int, int>::iterator it = ft_m1.equal_range(40).first;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+        
+// }
+
+// #include "../Map/map.hpp"
+// #include "../Map/bidirectional_iterator.hpp"
+// //bidirectional iterator test
+
+// int main()
+// {
+//     //++it operator
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "++it operator "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft::Map<int, int>::iterator it = ft_m1.begin();
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         ++it;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         ++it;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+
+//     //--it operator
+
+//     std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "--it operator "
+//               << "] --------------------]\t\t\033[0m";
+//     {
+//         ft::Map<int, int> ft_m1;
+//         ft_m1.insert(ft::make_pair(10, 10));
+//         ft_m1.insert(ft::make_pair(20, 20));
+//         ft_m1.insert(ft::make_pair(30, 30));
+//         ft_m1.insert(ft::make_pair(40, 40));
+//         ft_m1.insert(ft::make_pair(50, 50));
+//         ft::Map<int, int>::iterator it = ft_m1.end();
+//         --it;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         --it;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         --it;
+//         std::cout << "\nft::Map == " << it->first << std::endl;
+//         std::cout << "\ndrawig Map for test == " << std::endl;
+//         ft_m1.printTree(ft_m1.get_root(),NULL, false);
+//     };
+
+// }
+
 #include "../Vectorr/stack.hpp"
+
 int main()
 {
-    //stack constructor test
-    std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack constructor test "
+    //stack push test
+
+    std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "stack push test "
               << "] --------------------]\t\t\033[0m";
     {
         ft::Stack<int> ft_s1;
-        std::cout << "\nft::stack == " << ft_s1.size() << std::endl;
+        ft_s1.push(10);
+        ft_s1.push(20);
+        ft_s1.push(30);
+        ft_s1.push(40);
+        ft_s1.push(50);
+        std::cout << "\nft::Stack == " << ft_s1.top() << std::endl;
+        std::cout << "\ndrawig Stack for test == " << std::endl;
+        //ft_s1.printStack(ft_s1.get_root(),NULL, false);
+    };
+
+    //Stack pop test
+
+    std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Stack pop test "
+              << "] --------------------]\t\t\033[0m";
+    {
+        ft::Stack<int> ft_s1;
+        ft_s1.push(10);
+        ft_s1.push(20);
+        ft_s1.push(30);
+        ft_s1.push(40);
+        ft_s1.push(50);
+        ft_s1.pop();
+        ft_s1.pop();
+        std::cout << "\nft::Stack == " << ft_s1.top() << std::endl;
+       // std::cout << "\ndrawig Stack for test == " << std::endl;
+        //ft_s1.printStack(ft_s1.get_root(),NULL, false);
+    };
+
+    //Stack top test
+
+    std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "Stack top test "
+              << "] --------------------]\t\t\033[0m";
+    {
+        ft::Stack<int> ft_s1;
+        ft_s1.push(10);
+        ft_s1.push(20);
+        ft_s1.push(30);
+        ft_s1.push(40);
+        ft_s1.push(50);
+        std::cout << "\nft::Stack == " << ft_s1.top() << std::endl;
+       // std::cout << "\ndrawig Stack for test == " << std::endl;
+        //ft_s1.printStack(ft
     }
 
-    // //stack push test
-    // std::cout << "\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << " stack push test "
-    //           << "] --------------------]\t\t\033[0m";
-    // {
-    //     ft::Stack<int> ft_s1;
-    //     ft_s1.push(10);
-    //     ft_s1.push(20);
-    //     ft_s1.push(30);
-    //     ft_s1.push(40);
-    //     ft_s1.push(50);
 
-    //     std::string ft_res;
-    //     /*----------------------------------------------------*/
+    //print all stack elements
 
-    //     std::cout << "\nft::stack == " << ft_res << std::endl;
-    // }
+    std::cout << "\n\n\n\t\033[1;37m[-------------------- [" << std::setw(40) << std::left << "print all stack elements "
+              << "] --------------------]\t\t\033[0m";
+    {
+        ft::Stack<int> ft_s1;
+        std::string str;
+        ft_s1.push(10);
+        str = std::to_string(ft_s1.top());
+        ft_s1.push(20);
+        str = str + " " + std::to_string(ft_s1.top());
+        ft_s1.push(30);
+        str = str + " " + std::to_string(ft_s1.top());
+        ft_s1.push(40);
+        str = str + " " + std::to_string(ft_s1.top());
+        ft_s1.push(50);
+        str = str + " " + std::to_string(ft_s1.top());
+        std::cout << "\nft::Stack == " << str << std::endl;
+        //std::cout << "\ndrawig Stack for test == " << std::endl;
+        //ft_s1.printStack(ft_s1.get_root(),NULL, false);
+    };
 }

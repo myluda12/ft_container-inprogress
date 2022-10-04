@@ -66,7 +66,7 @@ namespace ft
         }
         //range contructor of map
         template <class InputIterator>
-        Map(InputIterator first, InputIterator last, const Compare &comp = Compare(), const Allocator &alloca = allocator_type(),  typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
+        Map(InputIterator first, InputIterator last, const Compare &comp = Compare(), const Allocator &alloca = allocator_type(),  typename ft::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
         {
             size_ = 0;
             root = NULL;
@@ -236,13 +236,12 @@ namespace ft
             }
 
         template <class InputIterator>
-        void insert(InputIterator first, InputIterator last, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
+        void insert(InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
         {
             for (InputIterator it = first; it != last; it++)
-            {
                 insert(*it);
-            }
         }
+
         void erase(iterator position)
         {
             int index = 1;
@@ -290,14 +289,22 @@ namespace ft
         // {
         // }
         // void erase(iterator first, iterator last);
-
-        void swap(Map<Key,T,Compare,Allocator>& x)
+        void swap(Map &x)
         {
-            std::swap(root, x.root);
-            std::swap(size_, x.size_);
-            std::swap(alloc, x.alloc);
-            std::swap(compare, x.compare);
+            node_type *tmp = root;
+            root = x.root;
+            x.root = tmp;
+            size_type tmp_size = size_;
+            size_ = x.size_;
+            x.size_ = tmp_size;
         }
+        // void swap(Map<Key,T,Compare,Allocator>& x)
+        // {
+        //     ft::swap(root, x.root);
+        //     ft::swap(size_, x.size_);
+        //     ft::swap(alloc, x.alloc);
+        //     ft::swap(compare, x.compare);
+        // }
         void clear()
         {
             size_ = 0;
@@ -481,7 +488,7 @@ namespace ft
     template<class Key, class T, class Compare, class Alloc>
     bool operator<( const Map<Key,T,Compare,Alloc>& lhs, const Map<Key,T,Compare,Alloc>& rhs ) 
     {    
-        return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
     }
     template <class Key, class T, class Compare, class Alloc>
     bool operator<= ( const Map<Key,T,Compare,Alloc>& lhs, const Map<Key,T,Compare,Alloc>& rhs ) {

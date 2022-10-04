@@ -20,13 +20,13 @@
 			{ 
 				return cont.empty();
 			};
-			size_type size() const
-			{
-				return cont.size();
-			};
 			value_type& top()
 			{
 				return cont.back();
+			};
+			size_type size() const
+			{
+				return cont.size();
 			};
 			const value_type& top() const 
 			{
