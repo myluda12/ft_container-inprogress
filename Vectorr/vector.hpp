@@ -106,7 +106,7 @@ namespace ft
             }
 
             template <class InputIterator>
-            void assign(InputIterator first, InputIterator last)
+            void assign(InputIterator first, InputIterator last, typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type = InputIterator())
             {
               size_t n = last - first;
               if (n > _capacity)
@@ -122,8 +122,9 @@ namespace ft
                 _alloc.construct(&_buff[i], first[i]);
               _size = n;
             }
+     
 
-            void assign(size_type n, const T& val)
+            void assign(size_type n, const T& val )
             {
                 for(size_t i = 0 ; i < _size ; i++)
                   _alloc.destroy(&_buff[i]);
